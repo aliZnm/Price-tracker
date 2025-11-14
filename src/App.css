@@ -227,3 +227,19 @@ body{
 .add-button:hover {
   background-color: #6668ea;
 }
+
+
+
+.items-container {
+  display: flex;
+  overflow-x: auto;       /* horizontal scroll */
+  gap: 10px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.product-card {
+  min-width: 200px;       /* width of each card */
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
