@@ -15,19 +15,36 @@ function ShoppingList({user, onLogout}){
             );
             const data = await res.json();
             if(data.items && data.items.length >0){
-                return data.items[0].title;
+                return {name: data.items[0].title, price: "", store: ""};
             }
-            return "Unknown Product";
+            return null;
         }
         catch (err){
-            return "Error fetching product";
+            return null;
         }
     };
 
     const handleScan = async (barcode) => {
-        const name = await fetchProduct(barcode);
-        setProducts((prev) => [...prev, {barcode, name}]);
         setScanning(false);
+        const existing = products.find((p) => p.barcode === barcode);
+        if(existing){
+            alert(
+                `Item already scanned!\nName: ${existing.name}\nPrice: ${existing.price}\nStore: ${existing.store}`
+            );
+            return;
+        }
+
+        const product = await fetchProduct(barcode);
+        if(!product){
+            const name = prompt("Product not found. ENter procut name:");
+            if(!name) return;
+            const price = prompt("Enter price:");
+            const store = prompt("Enter store name:");
+            setProducts((prev) => [...prev, {barcode, name, price, store}]);
+        }
+        else{
+            setProducts((prev) => [...prev, {barcode, ...products}]);
+        }
     };
     
     const handleAddItem = () =>{
@@ -57,11 +74,16 @@ function ShoppingList({user, onLogout}){
 
 
             <div className="items-container">
-                {products.map((products, i) =>(
-                    <ProductCard key={i} name={products.name} />
+                {products.map((product, i) =>(
+                    <ProductCard 
+                    key={i} 
+                    name={product.name}
+                    price={product.price}
+                    store={product.store}
+                     />
                 ))}
             </div>
-            
+
             <AddButton onClick={handleAddItem}/>
         </div>
     );
