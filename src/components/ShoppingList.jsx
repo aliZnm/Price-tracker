@@ -3,10 +3,13 @@ import AddButton from "./AddButton";
 import { useState } from "react";
 import BarcodeScanner from "react-qr-barcode-scanner";
 import ProductCard from "./productCard";
-
+import NewProductForm from "./NewProductForm";
+//NewsProductForm
 function ShoppingList({user, onLogout}){
     const [products, setProducts] = useState([]);
     const [scanning, setScanning] = useState(false);
+    const [newProductBarcode, setNewProductBarcode] = useState(null);
+    const [showAddOptions, setAddOptions] = useState(false);
 
     const fetchProduct = async (barcode) =>{
         try{
@@ -19,7 +22,7 @@ function ShoppingList({user, onLogout}){
             }
             return null;
         }
-        catch (err){
+        catch {
             return null;
         }
     };
@@ -36,21 +39,23 @@ function ShoppingList({user, onLogout}){
 
         const product = await fetchProduct(barcode);
         if(!product){
-            const name = prompt("Product not found. ENter procut name:");
-            if(!name) return;
-            const price = prompt("Enter price:");
-            const store = prompt("Enter store name:");
-            setProducts((prev) => [...prev, {barcode, name, price, store}]);
+            setNewProductBarcode(barcode);
         }
         else{
-            setProducts((prev) => [...prev, {barcode, ...products}]);
+            setProducts((prev) => [...prev, {barcode, ...product}]);
         }
     };
-    
-    const handleAddItem = () =>{
-        setScanning(true);
+
+    const handleAddProduct = (product)=> {
+        setProducts((prev) => [...prev, product]);
+        setNewProductBarcode(null);
     };
 
+    const handleCancel = () =>{
+        setNewProductBarcode(null);
+    };
+
+   
 
 
 
@@ -60,6 +65,16 @@ function ShoppingList({user, onLogout}){
             <TopBar onLogout={onLogout} onSettings={() => console.log("Settings clicked")}/>
 
             <h2 className="page-title">Shopping List</h2>
+
+            {newProductBarcode && (
+                <NewProductForm 
+                barcode={newProductBarcode !== "manual" ? newProductBarcode : ""}
+                onSubmit={handleAddProduct}
+                onCancel={handleCancel}/>
+            )}
+
+
+
 
             {scanning && (
                 <div style={{marginTop: "10px"}}>
@@ -72,7 +87,6 @@ function ShoppingList({user, onLogout}){
                     </div>
             )}
 
-
             <div className="items-container">
                 {products.map((product, i) =>(
                     <ProductCard 
@@ -84,7 +98,7 @@ function ShoppingList({user, onLogout}){
                 ))}
             </div>
 
-            <AddButton onClick={handleAddItem}/>
+            <AddButton onScan={() => setScanning(true)} onManual={() => setNewProductBarcode("manual")}/>
         </div>
     );
 }

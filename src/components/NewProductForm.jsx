@@ -16,7 +16,7 @@ function NewProductForm({barcode, onSubmit, onCancel}){
     return(
         <div className="new-product-form">
             <h3>Add Item</h3>
-            <form onSubmit="handleSubmit">
+            <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Product Name" value={name} onChange={(e)=>setName(e.target.value)}  required/>
                 <input type="text" placeholder="$" value={price} onChange={(e)=>setPrice(e.target.value)}  required/>               
                 <input type="text" placeholder="Store Name" value={store} onChange={(e)=>setStore(e.target.value)}  required/>
