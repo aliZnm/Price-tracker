@@ -140,3 +140,90 @@ body{
 .apple-button:hover{
   background-color: rgb(41, 41, 41);
 }
+
+
+
+
+.page-container {
+  width: 670px;             /* clean card size */
+  min-height: 500px;
+  background: #ffffff;
+  margin: 60px auto;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.page-title {
+  align-self: flex-start;    /* aligns left inside the flex container */
+  margin-top: 100px;          /* space from the top */
+  margin-left: 30px;         /* space from left edge of container */
+  font-size: 30px;          
+  color: #333;
+    font-family: 'Segoe UI', sans-serif; 
+}
+
+.top-bar {
+  width: 100%;
+  height: 55px;                     /* nav bar height */
+  background-color: white;        /* your theme color */
+  border-radius: 12px 12px 0 0;     /* round top corners like a phone */
+  display: flex;
+  justify-content: space-between;   /* left + right icons */
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+}
+
+.top-bar-button {
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: white;                     /* icon color */
+  cursor: pointer;
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+
+.nav-icons{
+  width: 45px;
+  transition: width 0.2s ease-in-out;
+}
+.nav-icons:hover{
+  width: 50px;
+}
+
+.add-button {
+  position: absolute;
+  bottom: 90px;          /* distance from bottom of page-container */
+  left: 50%;             /* center horizontally */
+  transform: translateX(-50%); /* truly center */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #5254d8;
+  color: white;
+  font-size: 32px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.add-button:hover {
+  background-color: #6668ea;
+}

@@ -18,7 +18,8 @@ useEffect(() =>{
   return(
     <div className="app-container">
       {user ? (
-        <ShoppingList user={user} /> 
+        <ShoppingList user={user} 
+        onLogout={() => setUser(null)}/> 
       ) : showLogin ? (
         <LoginForm setUser={setUser} toggleForm={() => setShowLogin(false)} />
       ) : (
