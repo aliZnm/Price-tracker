@@ -9,7 +9,7 @@ function NewProductForm({barcode, onSubmit, onCancel}){
     const handleSubmit = (e) =>{
         e.preventDefault();
         if(!name)return;
-        onSubmit({barcode, name, price, store});
+        onSubmit({barcode, name, price, store, image});
     };
 
 

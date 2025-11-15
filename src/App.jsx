@@ -4,7 +4,7 @@ import LoginForm from "./components/LoginForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
 
-const devMode = true;
+const devMode = false;
 
 function App() {
   const [user, setUser] = useState(null);
