@@ -21,7 +21,15 @@ export default function Navbar({user, onLogout, setPage}){
         )}
 
         <div className={`navbar-slide-panel ${menuOpen ? "open" : ""}`}>
-            <h2 className="navbar-title" style={{marginTop: "10px", marginBottom:"40px", fontSize: "30px"}}>Account</h2>
+            
+            <div className="slide-close-btn"
+            onClick={()=> setMenuOpen(false)}>
+                <img src="/src/assets/arrow-icon.png" style={{width: "30px"}} />
+            </div>
+            
+            <h2 className="navbar-title" style={{marginTop: "10px", marginBottom:"40px", fontSize: "30px"}}>
+                Account
+            </h2>
 
             <button className="slide-item"
             onClick={()=>{

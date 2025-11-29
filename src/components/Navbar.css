@@ -118,3 +118,31 @@ body{
 .slide-item:hover {
   background: rgb(151, 151, 199, 0.4);
 }
+
+
+.slide-close-btn {
+  position: absolute;
+  top: 45%;
+  right: 100%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 45px;
+  background: #0f0c29;
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: 50%;
+}
+
+
+
+
+.navbar-slide-panel:not(.open) .slide-close-btn{
+  opacity: 0;
+  pointer-events: none;
+}
