@@ -3,7 +3,7 @@ import LoginForm from "./components/loginForm";
 import SignupForm from "./components/SignupForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
-
+import Navbar from "./components/Navbar";
 const devMode = true;
 
 function App() {
@@ -19,6 +19,7 @@ useEffect(() =>{
     <>
 
         <div className="app-container">
+          <Navbar user={user} onLogout={()=> setUser(null)} />
           {user ? (
             <ShoppingList user={user} onLogout={()=> setUser(null)} />
           ) : showLogin ? (

@@ -17,6 +17,8 @@ Lightest
 
 body{
   background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 
@@ -40,11 +42,12 @@ body{
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column; 
+  justify-content: flex-start;
   align-items: center;
-  background: transparent; 
-  backdrop-filter: none;   
+  background: transparent;
 }
+
 
 .auth-container h2 {
   margin-bottom: 50px;
