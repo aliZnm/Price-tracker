@@ -68,14 +68,17 @@ body{
   right: 0;
   width: 260px;
   height: 100vh;
-  background: rgba(121,121,171,0.3);
+  background: #0f0c29;
   backdrop-filter: blur(12px);
   padding: 20px;
   z-index: 2000;
 
   transform: translateX(100%);
-
   transition: transform 0.3s ease-out;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbar-slide-panel.open {
@@ -91,4 +94,27 @@ body{
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1500;
+}
+
+
+.slide-item {
+  width: 115%;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  background: rgba(255,255,255,0);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: bold;
+  color: rgb(188, 188, 212)
+}
+
+.slide-item.logout-btn{
+  color: rgb(187, 110, 110);
+}
+
+.slide-item:hover {
+  background: rgb(151, 151, 199, 0.4);
 }

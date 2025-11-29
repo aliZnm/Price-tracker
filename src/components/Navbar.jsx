@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Navbar.css";
 import { onLog } from "firebase/app";
 
-export default function Navbar({user, onLogout}){
+export default function Navbar({user, onLogout, setPage}){
     const [menuOpen, setMenuOpen] = useState(false);
 
     return(
@@ -21,15 +21,30 @@ export default function Navbar({user, onLogout}){
         )}
 
         <div className={`navbar-slide-panel ${menuOpen ? "open" : ""}`}>
-            <h2>Account</h2>
+            <h2 className="navbar-title" style={{marginTop: "10px", marginBottom:"40px", fontSize: "30px"}}>Account</h2>
 
-            <button className="slide-btn" onClick={onLogout}>
-                Logout
+            <button className="slide-item"
+            onClick={()=>{
+                setPage("account");
+                setMenuOpen(false);
+            }}>
+                Account Info
             </button>
 
-            <button className="slide-btn"
-            onClick={()=> alert("Settings coming soon")}>
+            <button className="slide-item"
+            onClick={()=>{
+                setPage("settings");
+                setMenuOpen(false);
+            }}>
                 Settings
+            </button>
+
+            <button className="slide-item logout-btn"
+            onClick={()=>{
+                onLogout();
+                setMenuOpen(false);
+            }}>
+                Logout
             </button>
         </div>
       </>

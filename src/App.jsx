@@ -9,6 +9,7 @@ const devMode = true;
 function App() {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
+  const [page, setPage] = useState("home");
    
 useEffect(() =>{
   if(devMode){
@@ -19,9 +20,18 @@ useEffect(() =>{
     <>
 
         <div className="app-container">
-          <Navbar user={user} onLogout={()=> setUser(null)} />
+          {user && (
+            <Navbar user={user} onLogout={()=> setUser(null)} setPage={setPage} />
+          )}
+
           {user ? (
-            <ShoppingList user={user} onLogout={()=> setUser(null)} />
+            page === "home" ? (
+              <ShoppingList user={user} />
+            ) : page === "settings" ? (
+              <SettingsPage />
+            ) : page === "account" ? (
+              <AccountInfoPage />
+            ) : null
           ) : showLogin ? (
             <LoginForm setUser={setUser} toggleForm={() => setShowLogin(false)} />
           ) : (
