@@ -78,6 +78,7 @@ function ShoppingList({ user }) {
   };
 
   return (
+    <>
     <div className="page-container">
       <h2 className="page-title">Shopping List</h2>
 
@@ -111,12 +112,13 @@ function ShoppingList({ user }) {
           />
         ))}
       </div>
+    </div>
 
-      <AddButton
+    <AddButton
         onScan={() => setScanning(true)}
         onManual={() => setNewProductBarcode("manual")}
       />
-    </div>
+    </>
   );
 }
 
