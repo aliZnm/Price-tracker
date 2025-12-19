@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./Navbar.css";
-import { onLog } from "firebase/app";
 
 export default function Navbar({user, onLogout, setPage}){
     const [menuOpen, setMenuOpen] = useState(false);
@@ -50,6 +49,7 @@ export default function Navbar({user, onLogout, setPage}){
             <button className="slide-item logout-btn"
             onClick={()=>{
                 onLogout();
+                setPage("home");
                 setMenuOpen(false);
             }}>
                 Logout

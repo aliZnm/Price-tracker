@@ -4,7 +4,9 @@ import SignupForm from "./components/SignupForm";
 import ShoppingList from "./components/ShoppingList";
 import './App.css';
 import Navbar from "./components/Navbar";
-const devMode = false;
+import SettingsPage from "./components/SettingsPage";
+import AccountInfoPage from "./components/AccountInfoPage";
+const devMode = true;
 
 function App() {
   const [user, setUser] = useState(null);
@@ -13,7 +15,10 @@ function App() {
    
 useEffect(() =>{
   if(devMode){
-    setUser({displayName: "Developer"});
+    setUser({
+      uid: "dev",
+      displayName: "Developer"
+    });
   }
 }, []);
   return(
