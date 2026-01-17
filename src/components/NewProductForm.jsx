@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
     const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState("$0.00");
     const [store, setStore] = useState("");
     const [image, setImage] = useState("");
+    const nameInputRef = useRef(null);
+
+    useEffect(() =>{
+        nameInputRef.current?.focus();
+    }, []);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -16,6 +21,14 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
             store, 
             image: image || scannedImage || "",
         });
+    };
+
+    const handlePriceChange = (e) =>{
+        let val = e.target.value;
+
+        val = val.replace(/\D/g, "");
+        val = (parseInt(val || "0", 10)/100).toFixed(2);
+        setPrice(`$${val}`);
     };
 
 
@@ -31,7 +44,9 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
                     height: "100vh",
                     backgroundColor: "rgba(0,0,0,0.55)",
                     zIndex: 100, 
-         }}></div>
+         }}>
+
+         </div>
 
             <div  className="modal-box"
                     style={{
@@ -87,9 +102,9 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
 
                     <input
                         type="text"
-                        placeholder="$"
+                        placeholder="$0.00"
                         value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        onChange={handlePriceChange}
                         required
                     />
 

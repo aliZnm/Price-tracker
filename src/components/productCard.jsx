@@ -31,7 +31,7 @@ function ProductCard({id, name, price, store, image, highlighted, dimmed}){
                 )}
             </div>
             
-            <p className="product-price" >{price ? `$${price}` : "Price N/A"}</p>
+            <p className="product-price" >{price ? `${price}` : "Price N/A"}</p>
 
         </div>
     );
