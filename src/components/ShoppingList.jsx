@@ -4,13 +4,15 @@ import BarcodeScanner from "react-qr-barcode-scanner";
 import ProductCard from "./productCard";
 import NewProductForm from "./NewProductForm";
 import { db } from "../firebase"; 
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc } from "firebase/firestore";
 
 function ShoppingList({ user }) {
   const [products, setProducts] = useState([]);
   const [scanning, setScanning] = useState(false);
   const [newProductBarcode, setNewProductBarcode] = useState(null);
   const [scannedImage, setScannedImage] = useState("");
+  const [highlightedId, setHighlightedId] = useState(null);
+
   useEffect(() => {
     if (!user) return;
 
@@ -62,9 +64,17 @@ function ShoppingList({ user }) {
     setScanning(false);
     const existing = products.find((p) => p.barcode === barcode);
     if (existing) {
-      alert(
-        `Item already scanned!\nName: ${existing.name}\nPrice: ${existing.price}\nStore: ${existing.store}`
-      );
+      const cardEl = document.getElementById(`product-${existing.id}`);
+      if(cardEl){
+        cardEl.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        setHighlightedId(existing.id);
+        setTimeout(() =>{
+          setHighlightedId(null);
+        }, 2000);
+      }
       return;
     }
 
@@ -118,10 +128,13 @@ function ShoppingList({ user }) {
         {products.map((product) => (
           <ProductCard
             key={product.id}
+            id={product.id}
             name={product.name}
             price={product.price}
             store={product.store}
             image={product.image}
+            highlighted={highlightedId === product.id}
+            dimmed={highlightedId && highlightedId !== product.id}
           />
         ))}
       </div>

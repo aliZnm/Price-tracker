@@ -1,7 +1,13 @@
-function ProductCard({name, price, store, image}){
+function ProductCard({id, name, price, store, image, highlighted, dimmed}){
+    
     return(
-        <div className="product-card"
->
+        <div 
+        id={`product-${id}`}
+        className={`product-card
+            ${highlighted ? "highlighted" : ""}
+            ${dimmed ? "dimmed" : ""}
+            `}
+            >
             <h4 className="product-name">{name}</h4>
             <p className="product-store">{store || "Store N/A"}</p>
 
@@ -9,7 +15,7 @@ function ProductCard({name, price, store, image}){
             style={{
             width: "120px",
             height: "120px",
-            margin: "0 auto",   // centers the image
+            margin: "0 auto",   
             backgroundColor: "#e0e0ff",
             borderRadius: "8px",
             overflow: "hidden",
