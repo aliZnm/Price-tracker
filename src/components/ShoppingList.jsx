@@ -12,6 +12,41 @@ function ShoppingList({ user }) {
   const [newProductBarcode, setNewProductBarcode] = useState(null);
   const [scannedImage, setScannedImage] = useState("");
   const [highlightedId, setHighlightedId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [notFound, setNotFound] = useState(false);
+
+  const spotlightProduct = (id) =>{
+    setHighlightedId(id);
+
+    const el = document.getElementById(`product-${id}`);
+    el?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    setTimeout(() =>{
+      setHighlightedId(null);
+    }, 2000);
+  };
+
+  useEffect(() => {
+  if (!searchQuery) {
+    setNotFound(false);
+    return;
+  }
+
+  const match = products.find(p =>
+    p.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+  );
+
+  if (match) {
+    spotlightProduct(match.id);
+    setNotFound(false);
+  } else {
+    setNotFound(true);
+  }
+}, [searchQuery, products]);
+
 
   useEffect(() => {
     if (!user) return;
@@ -103,6 +138,32 @@ function ShoppingList({ user }) {
     <>
     <div className="page-container">
       <h2 className="page-title">Shopping List</h2>
+     
+<form
+  onSubmit={(e) => {
+    e.preventDefault();
+    handleSearch(); 
+  }}
+  style={{ display: "flex", gap: "8px", marginBottom: "10px" }}>
+  <input
+  className="search-bar"
+    type="text"
+    placeholder="Search product..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    style={{
+      flex: 1,
+      padding: "6px 10px", 
+      borderRadius: "6px",
+      border: "none",
+      fontSize: "14px",
+      height: "25px",
+      backgroundColor: "#c9c9df"
+    }}
+  />
+  
+</form>
+{notFound && <p style={{ color: "red", marginBottom: "10px" }}>Not found</p>}
 
       {newProductBarcode && (
         <NewProductForm

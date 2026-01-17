@@ -113,7 +113,7 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel}){
                         }
                     }} />
 
-                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#5254d8", color: "#fff", fontWeight: "bold" }}>Add</button>
+                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#6b6df0", color: "#fff", fontWeight: "bold" }}>Add</button>
                 </form>
             </div>
         </>
