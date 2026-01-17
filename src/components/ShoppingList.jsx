@@ -13,7 +13,9 @@ function ShoppingList({ user }) {
   const [scannedImage, setScannedImage] = useState("");
   const [highlightedId, setHighlightedId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [notFound, setNotFound] = useState(false);
+  const [notFound, setNotFound] = useState(false)
+  const [searchMessage, setSearchMessage] = useState("");
+
 
   const spotlightProduct = (id) =>{
     setHighlightedId(id);
@@ -27,6 +29,26 @@ function ShoppingList({ user }) {
     setTimeout(() =>{
       setHighlightedId(null);
     }, 2000);
+  };
+
+  const handleSearch = () => {
+    const query = searchQuery.trim().toLowerCase();
+    if(!query){
+      setSearchMessage("");
+      setNotFound(false);
+      return;
+    }
+
+    const match = products.find(p => p.name.toLowerCase() === query);
+
+    if(match){
+      spotlightProduct(match.id);
+      setSearchMessage("Product already exists.");
+      setNotFound(false);
+    } else{
+      setSearchMessage("");
+      setNotFound(true);
+    }
   };
 
   useEffect(() => {
@@ -126,9 +148,25 @@ function ShoppingList({ user }) {
   };
 
   const handleAddProduct = (product) => {
+    const exists = products.find(
+      (p) => p.name.toLowerCase() === product.name.trim(). toLowerCase()
+    );
+
+    if(exists){
+      spotlightProduct(exists.id);
+      setSearchMessage("Product already exists.");
+      setNewProductBarcode(null);
+      return;
+    }
+
     saveProductToFirebase(product);
     setNewProductBarcode(null);
+    setSearchMessage("");
   };
+
+
+
+
 
   const handleCancel = () => {
     setNewProductBarcode(null);
@@ -163,6 +201,7 @@ function ShoppingList({ user }) {
   />
   
 </form>
+{searchMessage && <p style={{color: "green", marginBottom: "10px"}}>{searchMessage}</p>}
 {notFound && <p style={{ color: "red", marginBottom: "10px" }}>Not found</p>}
 
       {newProductBarcode && (
