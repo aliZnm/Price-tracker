@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData}){
+function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData, isEditing}){
     const [name, setName] = useState(initialData?.name || "");
     const [price, setPrice] = useState(initialData?.price || "$0.00");
     const [store, setStore] = useState(initialData?.store || "");
@@ -128,7 +128,9 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData}
                         }
                     }} />
 
-                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#6b6df0", color: "#fff", fontWeight: "bold" }}>Add</button>
+                    <button type="submit" className="submit-btn" style={{ padding: "10px", borderRadius: "8px", backgroundColor: "#6b6df0", color: "#fff", fontWeight: "bold" }}>
+                        {isEditing ? "Edit" : "Add"}
+                        </button>
                 </form>
             </div>
         </>

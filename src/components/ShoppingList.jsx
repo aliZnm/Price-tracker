@@ -221,7 +221,20 @@ function ShoppingList({ user }) {
           barcode={editingProduct?.barcode || newProductBarcode || ""}
           scannedImage={editingProduct?.image || scannedImage}
           initialData={editingProduct}
+          isEditing={!!editingProduct}
           onSubmit={(product) =>{
+           const duplicate = products.find(
+            (p) =>
+              p.name.toLowerCase() === product.name.trim().toLowerCase() &&
+            p.id !== editingProduct?.id
+           );
+
+           if(duplicate){
+            spotlightProduct(duplicate.id);
+            setSearchMessage("Product already exists.");
+            return;
+           }
+           
             if(editingProduct){
             updateDoc(
               doc(db, "users", user.uid, "items", editingProduct.id),
@@ -229,8 +242,11 @@ function ShoppingList({ user }) {
             );
             setEditingProduct(null);
           } else{
-            handleAddProduct(product);
+            saveProductToFirebase(product);
           }
+
+          setNewProductBarcode(null);
+          setSearchMessage("");
         }}
         onCancel={() =>{
           setEditingProduct(null);
@@ -278,14 +294,13 @@ function ShoppingList({ user }) {
           <h3>Delete Product?</h3>
           <p>Are you sure you wnat to delte this product?</p>
 
-          <div style={{display: "flex", gap: "12px", marginTop: "20px"}}>
-            <button className="submit-btn" onClick={() => setDeleteTarget(null)}>
+          <div style={{display: "flex", gap: "30px", marginTop: "20px"}}>
+            <button className="delete-option-btn" onClick={() => setDeleteTarget(null)}>
               Cancel
             </button>
 
             <button 
-            className="submit-btn"
-            style={{background: "#192294", color: "#fff"}}
+            className="delete-option-btn delete"
             onClick={async () =>{
               await deleteDoc(
                 doc(db, "users", user.uid, "items", deleteTarget)
