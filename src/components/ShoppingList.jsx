@@ -4,7 +4,7 @@ import BarcodeScanner from "react-qr-barcode-scanner";
 import ProductCard from "./productCard";
 import NewProductForm from "./NewProductForm";
 import { db } from "../firebase"; 
-import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 function ShoppingList({ user }) {
   const [products, setProducts] = useState([]);
@@ -290,28 +290,52 @@ function ShoppingList({ user }) {
       />
 
       {deleteTarget && (
-        <div className="modal-box">
-          <h3>Delete Product?</h3>
-          <p>Are you sure you wnat to delte this product?</p>
+        <>
+          <div
+          onClick={() => setDeleteTarget(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.55)",
+            zIndex: 100,
+          }}
+          />
 
-          <div style={{display: "flex", gap: "30px", marginTop: "20px"}}>
-            <button className="delete-option-btn" onClick={() => setDeleteTarget(null)}>
-              Cancel
-            </button>
+          <div
+          className="modal-box"
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            tramsform: "translate(-50%, -50%)",
+            zIndex: 101,
+          }}>
+            <h3>Delete Product?</h3>
+            <p>Are you sure you want to delete this product?</p>
 
-            <button 
-            className="delete-option-btn delete"
-            onClick={async () =>{
-              await deleteDoc(
-                doc(db, "users", user.uid, "items", deleteTarget)
-              );
-              setDeleteTarget(null);
-            }}>
-              Delete
-            </button>
+            <div style={{display: "flex", gap: "30px", marginTop: "20px"}}>
+              <button
+              className="delete-option-btn"
+              onClick={() => setDeleteTarget(null)}>
+                Cancel
+              </button>
+
+              <button
+              className="delete-option-btn delete"
+              onClick={async () => {
+                const id = deleteTarget;
+                setDeleteTarget(null);
+                await deleteDoc(doc(db, "users", user.uid, "items", id)
+                );
+                setDeleteTarget(null);
+              }}>
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
+     
     </>
 
     
