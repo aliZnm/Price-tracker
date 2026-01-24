@@ -46,6 +46,7 @@ function ProductCard({
                     fontSize: "20px",
                     cursor: "pointer",
                     zIndex: 5,
+                    color: "white",
                 }}>
                     ⋮
                 </button>

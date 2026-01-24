@@ -38,7 +38,7 @@ body{
 }
 
 .navbar-title{
-  color: rgb(151, 151, 199); /*#7979ab hover: #a5a5d3*/
+  color: #5c79bc; 
   font-size: 28px;
 }
 
@@ -69,7 +69,7 @@ body{
   right: 0;
   width: 260px;
   height: 100vh;
-  background: linear-gradient(135deg, #4b6cb7, #182848);
+  background: #182848;
   backdrop-filter: blur(12px);
   padding: 20px;
   z-index: 2000;
