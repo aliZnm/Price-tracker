@@ -1,8 +1,7 @@
-import { auth, googleProvider, appleProvider } from "../firebase";
+import { auth, googleProvider } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import googleLogo from '../assets/google-png-logo.png'
-import appleLogo from '../assets/Apple_logo_white.svg.png'
 
 export default function LoginForm({setUser, toggleForm}){
     const [email, setEmail] = useState("");
@@ -30,16 +29,6 @@ export default function LoginForm({setUser, toggleForm}){
         }
     };
 
-    const handleAppleLogin = async ()=>{
-        try{
-            const result = await signInWithPopup(auth, appleProvider);
-            setUser(result.user);
-        }
-        catch(err){
-            setError(err.message);
-        }
-    };
-
 
     return(
         <div className="auth-container">
@@ -56,9 +45,7 @@ export default function LoginForm({setUser, toggleForm}){
                     <img className="logos" src={googleLogo} />
                 </button>
 
-                <button className="apple-button" onClick={handleAppleLogin}>Apple
-                    <img className="logos" src={appleLogo} />
-                </button>
+               
             </div>
             <p>Don't have an account? <button onClick={toggleForm}>Sign Up</button></p>
         </div>
