@@ -65,8 +65,10 @@ html, body{
 }
 
 .auth-container input {
-  width: 300px;       
-  max-width: 400px;     
+  width: 100%;       
+  max-width: 100%;
+  margin: 0 auto 15px auto;
+  box-sizing: border-box;  
   padding: 12px 15px;
   margin-bottom: 15px;
   border: 2px solid #aabfef;
@@ -74,8 +76,11 @@ html, body{
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
-  display: block;       
-  text-align: left;     
+      
+}
+
+.auth-container form {
+  width: 100%;
 }
 
 .auth-container input:focus {
@@ -518,11 +523,15 @@ html, body{
   }
 
   .auth-container{
-    width: 60%;
-    margin: 100px auto;
-    padding: 30px;
+    width: 90%;
+    margin: 80px auto;
+    padding: 20px;
   }
 
+  .auth-container input{
+    font-size: 14px;
+    pad: 10px 12px;
+  }
   
 
   
