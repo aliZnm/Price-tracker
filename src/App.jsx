@@ -6,8 +6,9 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import SettingsPage from "./components/SettingsPage";
 import AccountInfoPage from "./components/AccountInfoPage";
-import { getRedirectResult } from "firebase/auth";
 import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 const devMode = false;
 
@@ -25,16 +26,13 @@ useEffect(() =>{
   }
 }, []);
 
+
 useEffect(() => {
-  getRedirectResult(auth)
-    .then(result => {
-      if (result?.user) {
-        setUser(result.user);
-      }
-    })
-    .catch(err => {
-      console.error("Google redirect login error:", err);
-    });
+  const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    setUser(firebaseUser);
+  });
+
+  return () => unsubscribe();
 }, []);
 
   return(
@@ -42,7 +40,7 @@ useEffect(() => {
 
         <div className="app-container">
           {user && (
-            <Navbar user={user} onLogout={()=> setUser(null)} setPage={setPage} />
+            <Navbar user={user} onLogout={async () => {await signOut(auth);}} setPage={setPage} />
           )}
 
           {user ? (
