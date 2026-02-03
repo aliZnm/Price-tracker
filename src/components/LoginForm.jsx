@@ -42,8 +42,13 @@ export default function LoginForm({setUser, toggleForm}){
         }
 
         try{
-            await sendPasswordResetEmail(auth, email);
-            alert("Password reset email sent. Check spam folder.")
+            const actionCodeSettings = {
+                url: "https://price-tracker.vercel.app/login",
+                handleCodeInApp: false,
+            };
+            
+            await sendPasswordResetEmail(auth, email, actionCodeSettings);
+            alert("Password reset email sent. Check spam folder.");
         } catch(err){
             setError(err.message);
         }
