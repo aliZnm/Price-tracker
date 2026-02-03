@@ -43,7 +43,7 @@ export default function LoginForm({setUser, toggleForm}){
 
         try{
             const actionCodeSettings = {
-                url: "https://price-tracker.vercel.app/login",
+                url: "https://price-tracker-jgtg-dt6lo8e3c-aliznms-projects.vercel.app",
                 handleCodeInApp: false,
             };
             
