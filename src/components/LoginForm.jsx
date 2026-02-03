@@ -8,7 +8,7 @@ export default function LoginForm({setUser, toggleForm}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    const [successMessage, setSuccessMessage] = useState("");
     const handleLogin = async (e) =>{
         e.preventDefault();
         try{
@@ -48,9 +48,12 @@ export default function LoginForm({setUser, toggleForm}){
             };
             
             await sendPasswordResetEmail(auth, email, actionCodeSettings);
-            alert("Password reset email sent. Check spam folder.");
+            setSuccessMessage("Password reset email sent. Check spam folder.");
+            setError("");
+            setTimeout(() => setSuccessMessage(""), 4000);
         } catch(err){
             setError(err.message);
+            setSuccessMessage("");
         }
        };
 
@@ -62,6 +65,7 @@ export default function LoginForm({setUser, toggleForm}){
                 <input type="email" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)}/>
                 <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
                 {error && <p>{error}</p>}
+                {successMessage && <p style={{color: "green", backgroundColor: "#d4fcd4", padding: "5px", borderRadius: "6px"}}>{successMessage}</p>}
                 <button type="submit">Login</button>
             </form>
             <p>
