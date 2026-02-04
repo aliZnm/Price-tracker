@@ -17,10 +17,10 @@ This project was built to practice and demonstrate real-world application develo
 ## Screenshots
 
 ### Login Page
-![Login Page](./screenshots/login.png)
+![Login Page](./src/assets/login-screenshot.jpg)
 
 ### Signup Page
-![Signup Page](./screenshots/signup.png)
+![Signup Page](./src/assets/signup-screenshot.jpg)
 
 ### Shopping List Dashboard
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./src/assets/dashbaord-screenshot.jpg)
