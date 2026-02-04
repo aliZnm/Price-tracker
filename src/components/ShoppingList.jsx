@@ -44,7 +44,7 @@ function ShoppingList({ user }) {
 
     if(match){
       spotlightProduct(match.id);
-      setSearchMessage("Product exists.");
+      setSearchMessage("Product exists!");
       setNotFound(false);
     } else{
       setSearchMessage("");
