@@ -23,4 +23,54 @@ This project was built to practice and demonstrate real-world application develo
 <img src="./src/assets/signup-screenshot.jpg" width="300" />
 
 ### Dashboard
+
 <img src="./src/assets/dashbaord-screenshot.jpg" width="300" />
+## Tech Stack
+
+### Frontend
+- React
+- Vite
+- JavaScript
+- CSS
+
+### Backend & Services
+- Firebase Authentication
+- Firebase Firestore
+
+### Deployment
+- Vercel
+
+- ## Authentication
+
+YourCart uses Firebase Authentication to securely manage users. Supported authentication methods include:
+
+- Email and Password login
+- Google OAuth login
+- Password reset via email
+
+Only authorized domains are allowed, and authentication state is managed using Firebase's `onAuthStateChanged` listener to ensure session persistence.
+
+## Data Storage & Security
+
+User data is stored in Firebase Firestore. Each user's products are saved under their unique user ID, ensuring complete data isolation.
+
+Firestore security rules are configured so that:
+- Users must be authenticated
+- Users can only read and write their own data
+- Unauthorized access is blocked
+
+## How to Use
+
+1. Create an account using email/password or Google
+2. Log in to access your personal shopping list
+3. Add products you want to track
+4. Log out and log back in — your data remains saved
+5. Use the password reset option if needed
+
+## Installation & Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/yourcart.git
+
+
