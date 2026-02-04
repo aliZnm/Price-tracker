@@ -17,6 +17,7 @@ function ShoppingList({ user }) {
   const [searchMessage, setSearchMessage] = useState("");
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [duplicateMessage, setDuplicateMessage] = useState("");
 
   const spotlightProduct = (id) =>{
     setHighlightedId(id);
@@ -156,8 +157,8 @@ function ShoppingList({ user }) {
 
     if(exists){
       spotlightProduct(exists.id);
-      setSearchMessage("Product already exists.");
-      setTimeout(() => setSearchMessage(""), 3000);
+      setDuplicateMessage("Product already exists.");
+      setTimeout(() => setDuplicateMessage(""), 3000);
       setNewProductBarcode(null);
       return;
     }
@@ -216,6 +217,13 @@ function ShoppingList({ user }) {
   
 </form>
 {searchMessage && <p style={{color: "green", backgroundColor: "#d4fcd4", padding: "5px", borderRadius: "6px", width: "fit-content"}}>{searchMessage}</p>}
+
+{duplicateMessage && (
+  <p style={{
+    color: "green", backgroundColor: "#d4fcd4", padding: "5px", borderRadius: "6px", width: "fit-content"}}>
+    {duplicateMessage}
+  </p>
+)}
 {notFound && <p style={{ color: "red", marginBottom: "10px" }}>Not found</p>}
 
       {(newProductBarcode || editingProduct) && (
@@ -233,7 +241,8 @@ function ShoppingList({ user }) {
 
            if(duplicate){
             spotlightProduct(duplicate.id);
-            setSearchMessage("Product already exists.");
+            setDuplicateMessage("Product already exists.");
+            setTimeout(() => setDuplicateMessage(""), 3000);
             return;
            }
            
