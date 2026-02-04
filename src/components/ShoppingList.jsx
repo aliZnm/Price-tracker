@@ -45,6 +45,7 @@ function ShoppingList({ user }) {
     if(match){
       spotlightProduct(match.id);
       setSearchMessage("Product exists!");
+      setTimeout(() => setSearchMessage(""), 3000);
       setNotFound(false);
     } else{
       setSearchMessage("");
@@ -156,6 +157,7 @@ function ShoppingList({ user }) {
     if(exists){
       spotlightProduct(exists.id);
       setSearchMessage("Product already exists.");
+      setTimeout(() => setSearchMessage(""), 3000);
       setNewProductBarcode(null);
       return;
     }
