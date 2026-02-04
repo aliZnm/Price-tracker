@@ -11,6 +11,15 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData,
         nameInputRef.current?.focus();
     }, []);
 
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
+
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         if (!name) return;
@@ -37,16 +46,14 @@ function NewProductForm({barcode, scannedImage, onSubmit, onCancel, initialData,
             <div className="modal-overlay"
                 onClick={onCancel}
                 style={{
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    width: "100vw",
-                    height: "100vh",
-                    backgroundColor: "rgba(0,0,0,0.55)",
-                    zIndex: 100, 
-         }}>
+                     position: "fixed",
+                     inset: 0,
+                     backgroundColor: "rgba(0,0,0,0.55)",
+                     zIndex: 100,
+                     pointerEvents: "all",
+                     }}>
 
-         </div>
+             </div>
 
             <div  className="modal-box"
                     style={{

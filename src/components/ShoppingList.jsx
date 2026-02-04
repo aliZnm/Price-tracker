@@ -72,6 +72,13 @@ function ShoppingList({ user }) {
   }
 }, [searchQuery, products]);
 
+useEffect(() => {
+  if (newProductBarcode || editingProduct) {
+    setScanning(false);
+  }
+}, [newProductBarcode, editingProduct]);
+
+
 
   useEffect(() => {
     if (!user) return;
@@ -296,8 +303,14 @@ function ShoppingList({ user }) {
     </div>
 
     <AddButton
-        onScan={() => setScanning(true)}
-        onManual={() => setNewProductBarcode("manual")}
+        onScan={() => {
+          setNewProductBarcode(null);
+          setScanning(true);
+        }}
+        onManual={() => {
+          setScanning(false);
+          setNewProductBarcode("manual")
+        }}
       />
 
       {deleteTarget && (
