@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./public/app-logo.png" alt="YourCart Logo" width="40" style="vertical-align: middle;" />
+  <img src="./public/app-logo.png" alt="YourCart Logo" width="40" style="vertical-align: middle;"/>
   YourCart
 </h1>
 YourCart is a modern web application that allows users to securely track products in a personalized shopping list. Users can sign in using email/password or Google authentication, manage their products, and have their data persist across sessions using Firebase.
@@ -99,4 +99,5 @@ Firestore security rules are configured so that:
 ```
 ## Author
 Built by Abdulrahman Ali  
+
 
