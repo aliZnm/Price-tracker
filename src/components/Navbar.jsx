@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Navbar.css";
 import arrowIcon from '../assets/arrow-icon.png'
 import accountLogo from "../assets/account-logo1.png";
+import AppLogo from "../assets/app-logo.png";
 
 export default function Navbar({user, onLogout, setPage}){
     const [menuOpen, setMenuOpen] = useState(false);
@@ -9,7 +10,9 @@ export default function Navbar({user, onLogout, setPage}){
     return(
       <>
         <header className="main-navbar">
-            <div className="navbar-title">YourCart</div>
+            <div className="navbar-title">
+                <img src={AppLogo} alt="app logo" className="app-logo" />
+                YourCart</div>
 
             <button className="navbar-account-btn" onClick={()=> setMenuOpen(true)}>
                 <img src={accountLogo} alt="Account" className="navbar-account-icon" />

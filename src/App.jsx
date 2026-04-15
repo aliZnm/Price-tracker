@@ -10,7 +10,7 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 
-const devMode = false;
+const devMode = true;
 
 function App() {
   const [user, setUser] = useState(null);

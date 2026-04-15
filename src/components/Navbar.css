@@ -40,8 +40,15 @@ body{
 }
 
 .navbar-title{
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: #5c79bc; 
   font-size: 28px;
+}
+
+.navbar-title > img{
+  width: 40px;
 }
 
 .navbar-account-btn {
