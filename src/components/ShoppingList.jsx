@@ -211,15 +211,6 @@ useEffect(() => {
     placeholder="Search product..."
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    style={{
-      flex: 1,
-      padding: "6px 10px", 
-      borderRadius: "6px",
-      border: "none",
-      fontSize: "14px",
-      height: "25px",
-      backgroundColor: "#c9c9df"
-    }}
   />
   
 </form>
