@@ -9,7 +9,8 @@ The main goal of YourCart is to provide users with a simple and secure way to ma
 
 This project was built to practice and demonstrate real-world application development using React and Firebase, with a strong focus on authentication, data persistence, and security rules. It simulates how production applications handle user accounts, protected data, and cloud-based storage.
 
-Link: https://price-tracker-jgtg.vercel.app/
+Link: price-tracker-jgtg.vercel.app
+
 ## Features
 
 - User authentication with Email & Password
