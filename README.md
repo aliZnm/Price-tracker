@@ -22,10 +22,10 @@ Link: https://price-tracker-jgtg.vercel.app/
 ## Screenshots
 
 ### Login Page
-<img src="./src/assets/login-screenshot.jpg" width="300" />
+<img src="./src/assets/login-screenshot.png" width="300" />
 
 ### Signup Page
-<img src="./src/assets/signup-screenshot.jpg" width="300" />
+<img src="./src/assets/signup-screenshot.png" width="300" />
 
 ### Dashboard
 
