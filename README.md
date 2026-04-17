@@ -29,7 +29,7 @@ Link: https://price-tracker-jgtg.vercel.app/
 
 ### Dashboard
 
-<img src="./src/assets/dashbaord-screenshot.jpg" width="300" />
+<img src="./src/assets/dashboard-screenshot.png" width="300" />
 ## Tech Stack
 
 ### Frontend
