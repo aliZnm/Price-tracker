@@ -94,7 +94,7 @@ html, body{
 	justify-content: center;
 	display: block;
 	color: #fcfdff;
-	background: #708cce;
+  background: rgba(67, 97, 238, 0.5);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -103,6 +103,7 @@ html, body{
 	border-radius: 5px;
 	transition: .2s ease-in;
 	cursor: pointer;
+  
 }
 
 .auth-container button[type="submit"]:hover {
